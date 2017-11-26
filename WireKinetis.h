@@ -1,4 +1,5 @@
 /* Wire Library for Teensy LC & 3.X
+ *
  * Copyright (c) 2014-2017, Paul Stoffregen, paul@pjrc.com
  *
  * Development of this I2C library was funded by PJRC.COM, LLC by sales of
@@ -188,11 +189,11 @@ private:
 	void isr(void);
 	uintptr_t port_addr;
 	const I2C_Hardware_t &hardware;
-	uint8_t rxBuffer[BUFFER_LENGTH] = {};
+	uint8_t rxBuffer[TWI_BUFFER_LENGTH] = {};
 	uint8_t rxBufferIndex = 0;
 	uint8_t rxBufferLength = 0;
 	uint8_t txAddress = 0;
-	uint8_t txBuffer[BUFFER_LENGTH+1] = {};
+	uint8_t txBuffer[TWI_BUFFER_LENGTH+1] = {};
 	uint8_t txBufferIndex = 0;
 	uint8_t txBufferLength = 0;
 	uint8_t transmitting = 0;
