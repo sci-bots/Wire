@@ -30,7 +30,9 @@
 #include <inttypes.h>
 #include "Arduino.h"
 
-#define BUFFER_LENGTH 32
+#ifndef TWI_BUFFER_LENGTH
+#define TWI_BUFFER_LENGTH 32
+#endif
 #define WIRE_HAS_END 1
 
 class TwoWire : public Stream

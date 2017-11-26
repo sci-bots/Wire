@@ -414,7 +414,7 @@ void TwoWire::isr(void)
 		//digitalWriteFast(4, HIGH);
 		data = port().D;
 		//serial_phex(data);
-		if (rxBufferLength < BUFFER_LENGTH && receiving) {
+		if (rxBufferLength < TWI_BUFFER_LENGTH && receiving) {
 			rxBuffer[rxBufferLength++] = data;
 		}
 		//digitalWriteFast(4, LOW);
@@ -473,7 +473,7 @@ void TwoWire::sda_rising_isr(void)
 size_t TwoWire::write(uint8_t data)
 {
 	if (transmitting || slave_mode) {
-		if (txBufferLength >= BUFFER_LENGTH+1) {
+		if (txBufferLength >= TWI_BUFFER_LENGTH+1) {
 			setWriteError();
 			return 0;
 		}
@@ -486,7 +486,7 @@ size_t TwoWire::write(uint8_t data)
 size_t TwoWire::write(const uint8_t *data, size_t quantity)
 {
 	if (transmitting || slave_mode) {
-		size_t avail = BUFFER_LENGTH+1 - txBufferLength;
+		size_t avail = TWI_BUFFER_LENGTH+1 - txBufferLength;
 		if (quantity > avail) {
 			quantity = avail;
 			setWriteError();
@@ -682,7 +682,7 @@ uint8_t TwoWire::requestFrom(uint8_t address, uint8_t length, uint8_t sendStop)
 		port().S = I2C_S_IICIF;
 		length--;
 		if (length == 1) port().C1 = I2C_C1_IICEN | I2C_C1_MST | I2C_C1_TXAK;
-		if (count < BUFFER_LENGTH) {
+		if (count < TWI_BUFFER_LENGTH) {
 			rxBuffer[count++] = port().D;
 		} else {
 			tmp = port().D;
@@ -699,7 +699,7 @@ uint8_t TwoWire::requestFrom(uint8_t address, uint8_t length, uint8_t sendStop)
 	}
 	port().S = I2C_S_IICIF;
 	port().C1 = I2C_C1_IICEN | I2C_C1_MST | I2C_C1_TX;
-	if (count < BUFFER_LENGTH) {
+	if (count < TWI_BUFFER_LENGTH) {
 		rxBuffer[count++] = port().D;
 	} else {
 		tmp = port().D;
