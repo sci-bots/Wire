@@ -580,7 +580,7 @@ uint8_t TwoWire::endTransmission(uint8_t sendStop)
 			if (i == 0) {
 				ret = 2; // 2:received NACK on transmit of address
 			} else {
-				ret = 3; // 3:received NACK on transmit of data 
+				ret = 3; // 3:received NACK on transmit of data
 			}
 			sendStop = 1;
 			break;
@@ -729,7 +729,7 @@ uint8_t twi_writeTo(uint8_t address, uint8_t* data, uint8_t length, uint8_t wait
 	return Wire.endTransmission(sendStop);
 }
 
-constexpr TwoWire::I2C_Hardware_t TwoWire::i2c0_hardware = {
+TwoWire::I2C_Hardware_t TwoWire::i2c0_hardware = {
 	SIM_SCGC4, SIM_SCGC4_I2C0,
 #if defined(__MKL26Z64__) || defined(__MK20DX128__) || defined(__MK20DX256__)
 	18, 17, 255, 255, 255,
@@ -746,7 +746,7 @@ constexpr TwoWire::I2C_Hardware_t TwoWire::i2c0_hardware = {
 };
 
 #if defined(__MKL26Z64__) || defined(__MK20DX256__) || defined(__MK64FX512__) || defined(__MK66FX1M0__)
-constexpr TwoWire::I2C_Hardware_t TwoWire::i2c1_hardware = {
+TwoWire::I2C_Hardware_t TwoWire::i2c1_hardware = {
 	SIM_SCGC4, SIM_SCGC4_I2C1,
 #if defined(__MKL26Z64__)
 	23, 255, 255, 255, 255,
@@ -769,7 +769,7 @@ constexpr TwoWire::I2C_Hardware_t TwoWire::i2c1_hardware = {
 #endif
 
 #if defined(__MK64FX512__) || defined(__MK66FX1M0__)
-constexpr TwoWire::I2C_Hardware_t TwoWire::i2c2_hardware = {
+TwoWire::I2C_Hardware_t TwoWire::i2c2_hardware = {
 	SIM_SCGC1, SIM_SCGC1_I2C2,
 #if defined(__MK64FX512__) || defined(__MK66FX1M0__)
 	4, 255, 255, 255, 255,
@@ -782,7 +782,7 @@ constexpr TwoWire::I2C_Hardware_t TwoWire::i2c2_hardware = {
 #endif
 
 #if defined(__MK66FX1M0__)
-constexpr TwoWire::I2C_Hardware_t TwoWire::i2c3_hardware = {
+TwoWire::I2C_Hardware_t TwoWire::i2c3_hardware = {
 	SIM_SCGC1, SIM_SCGC1_I2C3,
 #if defined(__MK66FX1M0__)
 	56, 255, 255, 255, 255,

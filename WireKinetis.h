@@ -94,7 +94,7 @@ public:
 	static const I2C_Hardware_t i2c2_hardware;
 	static const I2C_Hardware_t i2c3_hardware;
 public:
-	constexpr TwoWire(uintptr_t port_addr, const I2C_Hardware_t &myhardware)
+	TwoWire(uintptr_t port_addr, const I2C_Hardware_t &myhardware)
 		: port_addr(port_addr), hardware(myhardware) {
 	}
 	void begin();
